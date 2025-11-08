@@ -1,0 +1,70 @@
+# =============================================
+# PYTHON
+# =============================================
+__pycache__/
+*.py[cod]
+*.pyd
+*.pdb
+
+# Virtual Environments
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dylib
+*.dll
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache/
+pytest_cache/
+htmlcov/
+
+# Logs
+*.log
+
+# Local sqlite database files
+*.db
+*.sqlite3
+
+# =============================================
+# IDEs / EDITORS
+# =============================================
+.vscode/
+.idea/
+*.iml
+.spyproject/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# =============================================
+# OS FILES
+# =============================================
+.DS_Store
+Thumbs.db
+
+# =============================================
+# DOCKER
+# =============================================
+docker-compose.override.yml
+*.pid
+*~
+
+# =============================================
+# GIT
+# =============================================
+# Do not ignore .gitignore itself
+!.gitignore
