@@ -1,9 +1,17 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
+from app.api.v1.health import router as health_router
+from app.core.logging_config import setup_logging
+from app.core.middleware import CorrelationIdMiddleware
+
 import os
 import logging
+
+# Inicializa logging
+setup_logging()
+logger = logging.getLogger("app")
 
 # ============================================================
 # Carregando variáveis de ambiente do .env
@@ -50,6 +58,18 @@ app.add_middleware(
 # ============================================================
 # Rotas
 # ============================================================
+
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    correlation_id = request.state.correlation_id
+    logger.info(f"[{correlation_id}] -> Request: {request.method} {request.url.path}")
+
+    response = await call_next(request)
+
+    logger.info(f"[{correlation_id}] <- Response status: {response.status_code}")
+    return response
+
 
 @app.get("/", summary="Health check")
 async def root():
